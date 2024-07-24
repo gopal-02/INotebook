@@ -1,0 +1,20 @@
+{
+  "name": "notebook",
+  "version": "1.0.0",
+  "description": "Notebook data backend",
+  "type":"module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "INotebook",
+    "Backend"
+  ],
+  "author": "Gopal kumar",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1"
+  }
+}
