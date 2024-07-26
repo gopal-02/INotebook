@@ -6,7 +6,7 @@ import notesRouter from "./routes/notes.routes.js";
 const app = express();
 app.use(express.json());
 connectDB();
-const PORT = 3000;
+const PORT = 5000;
 app.use("/api/auth", authRouter);
 app.use("/api/notes", notesRouter);
 
