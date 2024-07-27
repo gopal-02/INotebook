@@ -1,9 +1,11 @@
 import express, { Router } from "express";
 import { User } from "../models/user.model.js";
 import { body, validationResult } from "express-validator";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 const router = Router();
 const app = express();
-
+const JWT_SECRET="Gopalisencryptying";
 //Create a user using: POST "/api/auth/createuser". No login required
 router.post(
   "/createuser",
@@ -28,13 +30,20 @@ router.post(
           .status(400)
           .json({ error: "Sorry an user with this email already exists" });
       }
+      const salt = await bcrypt.genSalt(10);
+      const secpass = await bcrypt.hash(req.body.password,salt);
       //Create a new user
       user = await User.create({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: secpass,
       });
-      res.json(user);
+      const data ={
+        id: user.id,
+      }
+      const authtoken=jwt.sign(data,JWT_SECRET);      
+      res.json({authtoken});
+
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server Error");
