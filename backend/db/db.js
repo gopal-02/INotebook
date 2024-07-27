@@ -1,9 +1,9 @@
-import mongoose from 'mongoose';
-const mongoURI ="mongodb://localhost:27017/inotebook";
+import mongoose from "mongoose";
+import { DB_NAME } from "../constants.js";
 
-const connectDB= ()=>{
-    mongoose.connect(mongoURI);
-    console.log('Connected to mongoDB successfully...');
-    };
+const connectDB = async () => {
+  await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);
+  console.log("Connected to mongoDB successfully...");
+};
 
 export default connectDB;
