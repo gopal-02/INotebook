@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 const notesSchema = new mongoose.Schema(
   {
-    user:{
+    user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
     },
     title: {
       type: String,

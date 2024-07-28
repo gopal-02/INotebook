@@ -1,8 +1,11 @@
 import { Router } from "express";
 import fetchuser from "../middleware/fetchuser.js";
 const router = Router();
-import Notes from "../routes/auth.routes.js";
+import { Notes } from "../models/note.model.js";
 import { body, validationResult } from "express-validator";
+import express from "express";
+const app = express();
+app.use(express.json());
 //Route 1 : Get all the notes of loged in user using :GET "/api/notes/fetchallnotes" . Login required
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
   try {
@@ -26,17 +29,17 @@ router.post(
   ],
   async (req, res) => {
     try {
-      const { title, description, tag } = req.body;
+      const { title, description, tags } = req.body;
 
       // If there are errors, return Bad request and the errors
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      const note = new Note({
+      const note = new Notes({
         title,
         description,
-        tag,
+        tags,
         user: req.user.id,
       });
       const savedNote = await note.save();
