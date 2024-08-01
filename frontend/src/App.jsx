@@ -1,6 +1,8 @@
 const App = () => {
   return (
-    <div>App</div>
+    <>
+    <h1>This is INotebook</h1>
+    </>
   )
 }
 
