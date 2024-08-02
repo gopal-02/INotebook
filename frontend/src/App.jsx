@@ -1,7 +1,10 @@
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
 const App = () => {
   return (
     <>
-    <h1>This is INotebook</h1>
+    <Navbar/>
+    <Home/>
     </>
   )
 }
